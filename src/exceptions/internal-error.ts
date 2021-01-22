@@ -33,6 +33,7 @@ function isTrustedError(error: Error) {
   return false;
 }
 
+// error handling middleware
 export async function errorHandler(error: BattleshipBaseStackError, request: Request, response: Response, next: NextFunction) {
   let err = error;
 
