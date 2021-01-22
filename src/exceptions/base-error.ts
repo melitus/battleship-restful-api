@@ -1,4 +1,3 @@
-
 export class BattleshipBaseStackError extends Error {
   errors: Error;
   status: number;
@@ -21,4 +20,3 @@ export class BattleshipBaseStackError extends Error {
     Error.captureStackTrace(this);
   }
 }
-

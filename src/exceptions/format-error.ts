@@ -7,7 +7,7 @@ export function formatError(errors) {
   let errorFormat;
 
   if (Array.isArray(errors)) {
-    const formattedErrors = errors.map(error => {
+    const formattedErrors = errors.map((error) => {
       const formattedError = {
         status: error.status,
         title: error.title,

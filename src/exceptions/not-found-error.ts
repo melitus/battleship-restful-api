@@ -1,6 +1,6 @@
 import httpStatus from 'http-status';
 
-import {BattleshipBaseStackError} from './base-error'
+import { BattleshipBaseStackError } from './base-error';
 
 export class NotFoundError extends BattleshipBaseStackError {
   constructor(

@@ -14,14 +14,11 @@ const loadenv = () =>
 loadenv();
 
 export default {
- appKey: {
+  appKey: {
     port: process.env.APP_PORT || 8000,
-    env: process.env.NODE_ENV || 'production'
+    env: process.env.NODE_ENV || 'production',
   },
   mongo: {
-    uri:
-      process.env.NODE_ENV === 'test'
-        ? process.env.MONGO_URI_TESTS
-        : process.env.MONGO_URI
-  }
+    uri: process.env.NODE_ENV === 'test' ? process.env.MONGO_URI_TESTS : process.env.MONGO_URI,
+  },
 };

@@ -1,9 +1,8 @@
 import httpStatus from 'http-status';
 import { Request, Response, NextFunction } from 'express';
 
-import {formatError} from './format-error'
-import {BattleshipBaseStackError} from './base-error'
-
+import { formatError } from './format-error';
+import { BattleshipBaseStackError } from './base-error';
 
 /** Class representing an API Error Response with a related HTTP Status Code **/
 export class APIError extends BattleshipBaseStackError {
@@ -25,7 +24,6 @@ export class APIError extends BattleshipBaseStackError {
   }
 }
 
-
 function isTrustedError(error: Error) {
   if (error instanceof BattleshipBaseStackError) {
     return error.isOperational;
@@ -34,7 +32,12 @@ function isTrustedError(error: Error) {
 }
 
 // error handling middleware
-export async function errorHandler(error: BattleshipBaseStackError, request: Request, response: Response, next: NextFunction) {
+export async function errorHandler(
+  error: BattleshipBaseStackError,
+  request: Request,
+  response: Response,
+  next: NextFunction,
+) {
   let err = error;
 
   /* if we get an unhandled error, we want to log to console and turn it into an API error */
@@ -49,5 +52,3 @@ export async function errorHandler(error: BattleshipBaseStackError, request: Req
   response.status(processedErrors.errors[0].status || 500).json(processedErrors);
   return next();
 }
-
-

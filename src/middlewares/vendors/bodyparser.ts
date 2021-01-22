@@ -1,4 +1,5 @@
-import { Application } from "express";
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+import { Application } from 'express';
 import bodyParser from 'body-parser';
 
 export const initBodyParser = (app: Application) => {
@@ -10,4 +11,3 @@ export const initBodyParser = (app: Application) => {
     }),
   );
 };
-

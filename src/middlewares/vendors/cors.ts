@@ -1,5 +1,5 @@
-import { Application } from "express";
-const cors = require('cors');
+import { Application } from 'express';
+import cors from 'cors';
 
 const ALLOWED_ORIGINS = ['http://localhost:8008'];
 
