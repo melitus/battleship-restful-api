@@ -7,7 +7,7 @@ export class BattleshipBaseStackError extends Error {
   isPublic: boolean;
   isOperational: boolean;
   title: string;
-  constructor(message, ...args) {
+  constructor(message: string, ...args: any) {
     super(...args);
     Object.setPrototypeOf(this, new.target.prototype);
 
