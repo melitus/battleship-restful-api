@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    // Target latest version of ECMAScript.
+    "target": "ES2019",
+    "module": "commonjs",
+    "lib": [
+      "es2018",
+      "esnext.asynciterable"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./src/types"
+    ],
+    "sourceMap": true,
+    // Process & infer types from .js files.
+    "allowJs": false,
+    "outDir": "./dist",
+    // Enable strictNullChecks & noImplicitAny.
+    "strictNullChecks": true,
+    "strict": false,
+    "allowSyntheticDefaultImports": true,
+    // Search under node_modules for non-relative imports.
+    "moduleResolution": "node",
+    "pretty": true,
+    "skipLibCheck": true,
+  // Import .json files
+    "resolveJsonModule": true,
+  // Import non-ES modules as default imports.
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
