@@ -49,6 +49,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default {
-  gateway: createLoggerWithLabel('[BATTLESHIP:Server Gateway]'),
+  db: createLoggerWithLabel('[BATTLESHIP:Database Connection]'),
   initServer: createLoggerWithLabel('[BATTLESHIP:Init Server]'),
 };

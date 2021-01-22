@@ -5,6 +5,9 @@ import { Application } from 'express';
 
 import { appInitLoader } from '../loaders';
 import config from '../config';
+import getLogger from '../loaders/logger';
+
+const logger = getLogger.initServer;
 
 const app: Application = express();
 const server = http.createServer(app);
@@ -12,7 +15,7 @@ const server = http.createServer(app);
 export function startServer() {
   appInitLoader({ expressApp: app });
   server.listen(config.appKey.port, () =>
-    console.log(`👂 Battleship Api server started on port ${config.appKey.port} on (${config.appKey.env}) mode`),
+    logger.info(`👂 Battleship Api server started on port ${config.appKey.port} on (${config.appKey.env}) mode`),
   );
 }
 
