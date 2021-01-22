@@ -1,0 +1,8 @@
+{
+  "name": "battleship-restful-api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/melitus/battleship-restful-api.git",
+  "author": "melitus <asmelitus@gmail.com>",
+  "license": "MIT"
+}
