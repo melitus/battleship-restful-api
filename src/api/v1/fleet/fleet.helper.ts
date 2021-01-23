@@ -4,14 +4,14 @@ import { flatten } from 'lodash';
 import { BadRequestError } from '../../../exceptions';
 
 export const findCurrentPosition = (x: number, y: number, direction: string, length: number) => {
-  const currentPosition = [];
+  const currentPosition: any = [];
   if ((direction === 'horizontally' && x + length > 10) || (direction === 'vertically' && y - length < 0))
     throw new BadRequestError(400, 'Ship placement does not allow!');
   if (direction === 'horizontally' && x + length <= 10 && length > 0) {
     for (let i = 0; i <= length; i++) {
       currentPosition.push({
         row: x + i,
-        column,
+        column: y,
       });
     }
   }

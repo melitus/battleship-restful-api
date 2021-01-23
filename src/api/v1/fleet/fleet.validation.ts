@@ -8,14 +8,14 @@ export const createShipSchema = Joi.object().keys({
   health: Joi.number().required(),
   coordinate: Joi.array().items(
     Joi.object().keys({
-      row: Joi.number().allow([null, '']).optional(),
-      column: Joi.number().allow([null, '']).optional(),
+      row: Joi.number().allow(null, '').optional(),
+      column: Joi.number().allow(null, '').optional(),
     }),
   ),
   aroundCoordinate: Joi.array().items(
     Joi.object().keys({
-      row: Joi.number().allow([null, '']).optional(),
-      column: Joi.number().allow([null, '']).optional(),
+      row: Joi.number().allow(null, '').optional(),
+      column: Joi.number().allow(null, '').optional(),
     }),
   ),
 });
