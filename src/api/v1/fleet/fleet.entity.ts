@@ -5,7 +5,7 @@ import { IFleet } from './fleet.interface';
 const COLLECTION = 'Fleet';
 const states = ['available', 'active'];
 const directions = ['vertically', 'horizontally', 'setup'];
-const shipTypes = ['Carrier', 'Battleship', 'Cruiser', 'Submarine', 'Destroyer', 'None'];
+const shipTypes = ['Carrier', 'Battleship', 'Cruisers', 'Submarines', 'Destroyers', 'None'];
 
 const fleetSchema = new Schema(
   {

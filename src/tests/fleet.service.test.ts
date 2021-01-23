@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import chai, { expect } from 'chai';
-import sinon from 'sinon';
-import { ObjectID } from 'mongodb';
 
-import { connect, clearDatabase, closeDatabase } from './db-handler';
+import { connect, clearDatabase, closeDatabase } from './test-helper';
 import FleetService from '../api/v1/fleet/fleet.service';
 
 chai.use(require('chai-as-promised'));
@@ -30,7 +28,7 @@ describe('FleetService', () => {
         const record: any = {
           status: 'active',
           direction: 'setup',
-          type: 'Submarine',
+          type: 'Submarines',
           length: 1,
           health: 1,
           coordinate: [],
@@ -47,7 +45,7 @@ describe('FleetService', () => {
       const newShip: any = {
         status: 'active',
         direction: 'setup',
-        type: 'Submarine',
+        type: 'Submarines',
         length: 1,
         health: 1,
         coordinate: [],
@@ -62,5 +60,12 @@ describe('FleetService', () => {
       expect(ship.length).to.equal(newShip.length);
       expect(ship.health).to.equal(newShip.health);
     });
+  });
+
+  it('should place a ship', async () => {
+    const inputData = { row: 1, column: 1, type: 'Submarines', direction: 'vertically' };
+    const update = await FleetService.placeAShipOnBoard(inputData);
+    expect(update.status).to.equal('active');
+    expect(update.type).to.equal(inputData.type);
   });
 });
