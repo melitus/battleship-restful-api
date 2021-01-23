@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Application } from 'express';
 
 import { initMiddlewares } from '../middlewares';
 import { initializeErrorHandling } from './error';
+import installApiEndpoints from '../api/routes';
 
 export default async ({ app }: { app: Application }) => {
   // Redirect http url to https
@@ -10,6 +12,7 @@ export default async ({ app }: { app: Application }) => {
 
   initMiddlewares(app);
 
+  app.use('/v1/api', installApiEndpoints);
   initializeErrorHandling(app);
 
   return app;

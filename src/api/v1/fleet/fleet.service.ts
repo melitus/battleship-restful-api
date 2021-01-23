@@ -1,21 +1,13 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import FleetCollection from './fleet.entity';
 import { IFleet } from './fleet.interface';
-import { isGoodId, ID } from '../../../helpers/id';
 import config from '../../../config';
 import { BadRequestError } from '../../../exceptions';
 import { findAroundPosition, findCurrentPosition } from './fleet.helper';
 
-// Load Fleet and append to req.
-export const getSingleShip = async (shipId: ID): Promise<Partial<IFleet> | undefined> => {
-  await isGoodId(shipId);
-  const foundShip = await FleetCollection.findById(shipId).lean<IFleet>().exec();
-  return foundShip;
-};
-
-const getShips = async ({ status, type }) => {
+const getShips = async ({ status, type }): Promise<Partial<IFleet>> => {
   const searchQuery = { status, type };
-  const foundFleets = await FleetCollection.find(searchQuery);
+  const foundFleets = await FleetCollection.find(searchQuery).lean<IFleet>().exec();
   return foundFleets;
 };
 
@@ -65,7 +57,10 @@ const isOverlap = async (currentPositions, aroundPositions) => {
   const checkPositionOverlap = (
     await Promise.all(
       checkArea.map(async (position) => {
-        const data = (await FleetCollection.find({ 'coordinate.x': position.x, 'coordinate.y': position.y })).data;
+        const data = await FleetCollection.find({
+          'coordinate.row': position.row,
+          'coordinate.column': position.column,
+        });
         return data;
       }),
     )
@@ -86,7 +81,6 @@ const checkTypeExist = async (name: string) => {
 };
 
 export default {
-  getSingleShip,
   createShip,
   placeAShipOnBoard,
   checkTypeExist,
