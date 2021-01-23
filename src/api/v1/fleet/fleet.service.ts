@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import FleetCollection from './fleet.entity';
 import { IFleet } from './fleet.interface';
-import { isGoodId, ID } from '../../../helpers';
+import { isGoodId, ID } from '../../../helpers/id';
 import config from '../../../config';
 import { BadRequestError } from '../../../exceptions';
 import { findAroundPosition, findCurrentPosition } from './fleet.helper';
