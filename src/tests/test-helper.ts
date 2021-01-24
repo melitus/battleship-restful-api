@@ -3,6 +3,8 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 
 const mongoServer = new MongoMemoryServer();
 
+mongoose.set('useCreateIndex', true);
+
 /**
  * Connect to the in-memory database.
  */
