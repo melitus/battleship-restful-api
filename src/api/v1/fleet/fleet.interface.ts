@@ -6,10 +6,10 @@ export interface IFleet extends Document {
   status: string;
   direction: string;
   type: string;
-  length: string;
-  coordinate: boolean;
+  length: number;
+  coordinate: Array<>;
   aroundCoordinate: boolean;
-  health: boolean;
+  health: number;
   updatedAt?: Date;
   createdAt?: Date;
 }

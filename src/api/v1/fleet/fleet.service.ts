@@ -10,7 +10,19 @@ const getShips = async ({ status, type }): Promise<Partial<IFleet>> => {
   const foundFleets = await FleetCollection.find(searchQuery).lean<IFleet>().exec();
   return foundFleets;
 };
-
+const getAllShipAvailable = async () => {
+  const searchQuery = { status: 'available' };
+  const foundShips = await FleetCollection.find(searchQuery);
+  return foundShips;
+};
+const findAShipByCoordinate = async (x: number, y: number) => {
+  const foundFleet = await FleetCollection.findOne({ 'coordinate.row': x, 'coordinate.column': y });
+  return foundFleet;
+};
+const updateShipHealth = async (shipId, inputData) => {
+  const updated = await FleetCollection.updateOne({ _id: shipId }, { inputData });
+  return updated;
+};
 const createShip = async (fleetData: IFleet): Promise<IFleet> => {
   const newFleet = new FleetCollection(fleetData);
   const savedFleet = await newFleet.save();
@@ -23,7 +35,7 @@ const placeAShipOnBoard = async (inputData: any): Promise<Partial<IFleet>> => {
   if (!getConfig) {
     throw new BadRequestError(400, 'Wrong type.');
   }
-  const ship = await getShips({ status: 'AVAILABLE', type });
+  const ship = await getShips({ status: 'available', type });
   const currentPositions = findCurrentPosition(row, column, direction, getConfig.length - 1);
   const aroundPositions = findAroundPosition(currentPositions, direction, getConfig.length);
   Promise.all([
@@ -41,7 +53,7 @@ const placeAShipOnBoard = async (inputData: any): Promise<Partial<IFleet>> => {
 const placedShipInBattleField = async (currentPositions, aroundPositions, direction, type, ship) => {
   const selector = { _id: ship._id, type, status: 'AVAILABLE' };
   const fleetPayload = {
-    status: 'ACTIVE',
+    status: 'active',
     coordinate: currentPositions,
     direction,
     aroundCoordinate: aroundPositions,
@@ -84,4 +96,7 @@ export default {
   createShip,
   placeAShipOnBoard,
   checkTypeExist,
+  getAllShipAvailable,
+  findAShipByCoordinate,
+  updateShipHealth,
 };
