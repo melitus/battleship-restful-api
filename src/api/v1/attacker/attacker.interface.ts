@@ -1,5 +1,4 @@
 import { Document, Types } from 'mongoose';
-import { Request } from 'express';
 
 export interface IAttacker extends Document {
   _id: string | Types.ObjectId;
@@ -8,7 +7,12 @@ export interface IAttacker extends Document {
   limit: number;
   miss: number;
   hit: number;
-  attackCoordinate: string;
+  attackCoordinate: [coordinates];
   updatedAt?: Date;
   createdAt?: Date;
 }
+
+type coordinates = {
+  row: number;
+  column: number;
+};

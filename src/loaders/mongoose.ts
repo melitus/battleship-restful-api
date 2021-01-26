@@ -16,17 +16,16 @@ if (config.appKey.env === 'development') {
 }
 
 export const connectMongoWithRetry = async (): Promise<Db> => {
-  const connectionString = config.mongo.uri;
-  const connectionOptions = config.mongo.options;
-
+  const connectionString: any = config.mongo.uri;
+  const connectionOptions: any = config.mongo.options;
   try {
-    const connection = await mongoose.connect(connectionString, connectionOptions);
+    await mongoose.connect(connectionString, connectionOptions);
     logger.info(' 💻 Mongoose successfully connected to Jexta database: ');
-    return connection.connection.db;
+    return mongoose.connection;
   } catch (error) {
     if (error.message.code === 'ETIMEDOUT') {
       logger.info('Attempting to re-establish database connection.');
-      mongoose.connect(connectionString);
+      mongoose.connect(connectionString, connectionOptions);
     } else {
       logger.error(
         chalk.bgRed.bold('Error while attempting to connect to database:', {
