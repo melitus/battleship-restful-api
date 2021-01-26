@@ -51,7 +51,7 @@ const placeAShipOnBoard = async (inputData: any): Promise<Partial<IFleet>> => {
 };
 
 const placedShipInBattleField = async (currentPositions, aroundPositions, direction, type, ship) => {
-  const selector = { _id: ship._id, type, status: 'AVAILABLE' };
+  const selector = { _id: ship._id, type, status: 'available' };
   const fleetPayload = {
     status: 'active',
     coordinate: currentPositions,
